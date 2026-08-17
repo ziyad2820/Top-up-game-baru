@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GemStore — Top Up Diamond Cepat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #F5F8FC;
+    --surface: #FFFFFF;
+    --primary: #2F6FED;
+    --primary-dark: #1E54C4;
+    --coral: #FF6B4A;
+    --gold: #FFB020;
+    --text: #16213D;
+    --muted: #6B7A99;
+    --line: #E3EAF5;
+    --success: #16A34A;
+    --radius: 16px;
+    --display: 'Fredoka', sans-serif;
+    --body: 'Plus Jakarta Sans', sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--body);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  img,svg{display:block;max-width:100%;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+  :focus-visible{outline:2px solid var(--primary);outline-offset:3px;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(245,248,252,0.9);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 24px;max-width:1080px;margin:0 auto;
+  }
+  .logo{
+    font-family:var(--display);font-weight:700;font-size:21px;
+    display:flex;align-items:center;gap:8px;color:var(--primary-dark);
+  }
+  .logo .dot{width:10px;height:10px;border-radius:50%;background:var(--coral);}
+  .nav-cta{
+    display:flex;align-items:center;gap:8px;
+    background:var(--surface);color:var(--text);
+    font-weight:600;font-size:14px;border:1.5px solid var(--line);
+    padding:9px 16px;border-radius:999px;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{padding:64px 24px 48px;}
+  .hero-inner{
+    max-width:1080px;margin:0 auto;
+    display:grid;grid-template-columns:1.1fr 0.9fr;gap:40px;align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;font-weight:700;color:var(--primary-dark);
+    background:#E8F0FE;border:1px solid #CFE0FB;
+    padding:6px 14px;border-radius:999px;margin-bottom:18px;
+  }
+  h1{
+    font-family:var(--display);font-weight:600;
+    font-size:clamp(32px,4.6vw,50px);line-height:1.1;color:var(--text);
+  }
+  h1 span{color:var(--primary);}
+  .hero p{margin-top:16px;color:var(--muted);font-size:16.5px;max-width:44ch;}
+  .hero-actions{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--primary);color:#fff;font-weight:700;font-size:15px;
+    padding:15px 26px;border-radius:12px;border:none;cursor:pointer;
+    box-shadow:0 8px 20px rgba(47,111,237,0.28);
+    transition:transform .15s ease;
+  }
+  .btn-primary:hover{transform:translateY(-2px);}
+  .btn-ghost{
+    border:1.5px solid var(--line);color:var(--text);background:var(--surface);
+    font-weight:600;font-size:15px;padding:15px 24px;border-radius:12px;
+  }
+  .hero-art{
+    background:var(--surface);border-radius:24px;border:1px solid var(--line);
+    padding:32px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
+    box-shadow:0 12px 32px rgba(22,33,61,0.06);
+  }
+  .hero-art .amt{font-family:var(--display);font-weight:600;font-size:40px;color:var(--primary);}
+  .hero-art .label{color:var(--muted);font-size:13px;}
+  .hero-art svg{width:120px;}
+
+  /* ---------- GAME STRIP ---------- */
+  .game-strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface);}
+  .game-strip .wrap{display:flex;gap:12px;overflow-x:auto;padding:16px 24px;scrollbar-width:none;}
+  .game-strip .wrap::-webkit-scrollbar{display:none;}
+  .game-chip{
+    flex:0 0 auto;font-size:13.5px;font-weight:600;color:var(--muted);
+    border:1.5px solid var(--line);padding:8px 16px;border-radius:999px;white-space:nowrap;
+  }
+  .game-chip.active{color:var(--primary-dark);border-color:var(--primary);background:#EAF1FE;}
+
+  section{padding:60px 0;}
+  .section-head{max-width:600px;margin-bottom:36px;}
+  .section-head h2{font-family:var(--display);font-weight:600;font-size:clamp(22px,3vw,30px);}
+  .section-head p{color:var(--muted);margin-top:8px;font-size:15.5px;}
+
+  /* ---------- ORDER PANEL ---------- */
+  .order-panel{
+    background:var(--surface);border:1px solid var(--line);border-radius:22px;
+    padding:30px;box-shadow:0 12px 32px rgba(22,33,61,0.05);
+  }
+  .field{margin-bottom:20px;}
+  .field label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:8px;}
+  .field select,.field input{
+    width:100%;background:var(--bg);border:1.5px solid var(--line);color:var(--text);
+    font-family:var(--body);font-size:15px;padding:13px 16px;border-radius:12px;
+  }
+  .field select:focus,.field input:focus{border-color:var(--primary);}
+  .field small{display:block;margin-top:6px;color:var(--muted);font-size:12.5px;}
+  .field input.field-error{border-color:var(--coral);box-shadow:0 0 0 3px rgba(255,107,74,0.12);}
+
+  .nominal-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+  .nominal-card{
+    position:relative;cursor:pointer;text-align:center;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+    background:var(--bg);border:1.5px solid var(--line);border-radius:14px;
+    padding:18px 10px;min-height:96px;
+    transition:border-color .15s ease,transform .15s ease,background .15s ease;
+  }
+  .nominal-card:hover{transform:translateY(-2px);}
+  .nominal-card.selected{border-color:var(--primary);background:#EAF1FE;}
+  .nominal-card .amt{font-weight:800;font-size:17px;color:var(--primary-dark);}
+  .nominal-card .unit{font-size:11px;color:var(--muted);}
+  .nominal-card .price{margin-top:4px;font-weight:700;font-size:13.5px;color:var(--text);}
+
+  .summary{
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;
+    border-top:1px dashed var(--line);padding-top:20px;margin-top:20px;
+  }
+  .summary .total b{font-family:var(--display);font-size:22px;color:var(--primary-dark);display:block;}
+  .summary .total span{font-size:12px;color:var(--muted);}
+  .btn-order{
+    display:inline-flex;align-items:center;gap:10px;background:var(--coral);color:#fff;
+    font-weight:700;font-size:15.5px;padding:15px 26px;border-radius:12px;border:none;cursor:pointer;
+    box-shadow:0 10px 22px rgba(255,107,74,0.28);
+  }
+  .btn-order:disabled{opacity:.5;cursor:not-allowed;}
+
+  /* ---------- QR / STATUS PANEL ---------- */
+  .qr-panel{display:none;text-align:center;padding-top:8px;}
+  .qr-panel.show{display:block;}
+  .qr-panel img{width:200px;height:200px;margin:0 auto 16px;border-radius:12px;border:1px solid var(--line);}
+  .qr-status{
+    display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:14px;
+    padding:8px 16px;border-radius:999px;background:#FFF7E6;color:#B45309;margin-bottom:10px;
+  }
+  .qr-status.selesai{background:#EAFBF1;color:var(--success);}
+  .qr-status.gagal{background:#FEEBEA;color:#C0392B;}
+  .qr-status .dot{width:7px;height:7px;border-radius:50%;background:currentColor;}
+
+  /* ---------- STEPS ---------- */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  .step{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px 18px;}
+  .step .num{font-family:var(--display);font-weight:700;font-size:26px;color:var(--primary);margin-bottom:10px;}
+  .step h3{font-size:15.5px;font-weight:700;margin-bottom:6px;}
+  .step p{font-size:13.5px;color:var(--muted);}
+
+  /* ---------- TOAST ---------- */
+  .toast{
+    position:fixed;top:16px;left:50%;transform:translateX(-50%) translateY(-120%);z-index:100;
+    display:flex;align-items:center;gap:10px;background:var(--text);color:#fff;
+    font-size:14px;font-weight:600;padding:13px 20px;border-radius:12px;
+    box-shadow:0 12px 28px rgba(0,0,0,0.18);transition:transform .3s cubic-bezier(.34,1.56,.64,1);max-width:90vw;
+  }
+  .toast.show{transform:translateX(-50%) translateY(0);}
+  .toast svg{width:18px;height:18px;color:var(--gold);flex-shrink:0;}
+
+  /* ---------- FOOTER + FAB ---------- */
+  footer{border-top:1px solid var(--line);padding:36px 0;background:var(--surface);}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+  footer p.note{color:var(--muted);font-size:12.5px;max-width:520px;margin-top:12px;}
+  .fab{
+    position:fixed;bottom:22px;right:22px;z-index:60;
+    background:#25D366;width:56px;height:56px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;box-shadow:0 10px 24px rgba(37,211,102,0.35);
+  }
+  .fab svg{width:26px;height:26px;color:#fff;}
+
+  @media (max-width:860px){
+    .hero-inner{grid-template-columns:1fr;}
+    .hero-art{order:-1;}
+    .steps{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:520px){
+    h1{font-size:29px;}
+    .order-panel{padding:22px;}
+    .steps{grid-template-columns:1fr;}
+    .summary{flex-direction:column;align-items:stretch;}
+    .btn-order{justify-content:center;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo"><span class="dot"></span>GemStore</div>
+    <a href="#pesan" class="nav-cta">Pesan Sekarang</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-inner wrap">
+    <div>
+      <div class="eyebrow">✦ Proses 1–5 menit</div>
+      <h1>Top up diamond, <span>langsung masuk.</span></h1>
+      <p>Isi ID, pilih nominal, bayar pakai QRIS — diamond otomatis masuk ke akun kamu tanpa ribet nunggu lama.</p>
+      <div class="hero-actions">
+        <a href="#pesan" class="btn-primary">Mulai Top Up</a>
+        <a href="#cara" class="btn-ghost">Cara Pesan</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M4 8L8 3H16L20 8L12 21L4 8Z" fill="#FFB020"/>
+        <path d="M4 8H20L12 21L4 8Z" fill="#2F6FED"/>
+        <path d="M8 3L4 8H10L8 3Z" fill="#FFD98A"/>
+        <path d="M16 3L20 8H14L16 3Z" fill="#7FA6F5"/>
+      </svg>
+      <div class="amt">172 💎</div>
+      <div class="label">Mulai dari Rp40.000</div>
+    </div>
+  </div>
+</section>
+
+<div class="game-strip">
+  <div class="wrap">
+    <span class="game-chip active">Mobile Legends</span>
+    <span class="game-chip">Free Fire</span>
+    <span class="game-chip">PUBG Mobile</span>
+    <span class="game-chip">Genshin Impact</span>
+  </div>
+</div>
+
+<section id="pesan">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Form Pemesanan</h2>
+      <p>Isi ID akun dan pilih nominal, sistem akan buatkan kode QRIS otomatis.</p>
+    </div>
+
+    <div class="order-panel">
+      <!-- FORM -->
+      <div id="formArea">
+        <div class="field">
+          <label for="userid">ID Akun (+ Server jika ada)</label>
+          <input type="text" id="userid" placeholder="Contoh: 123456789 (2001)">
+          <small>Pastikan ID benar, diamond tidak bisa ditarik jika salah kirim.</small>
+        </div>
+
+        <div class="field">
+          <label>Pilih Nominal Diamond</label>
+          <div class="nominal-grid" id="nominalGrid">
+            <div class="nominal-card" data-id="ml-86" data-label="86 Diamond" data-price="Rp 20.000"><div class="amt">86</div><div class="unit">Diamond</div><div class="price">Rp 20.000</div></div>
+            <div class="nominal-card" data-id="ml-172" data-label="172 Diamond" data-price="Rp 40.000"><div class="amt">172</div><div class="unit">Diamond</div><div class="price">Rp 40.000</div></div>
+          </div>
+          <small>*Baru 2 nominal contoh, tambahkan lagi di kode sesuai produk di server.js.</small>
+        </div>
+
+        <div class="summary">
+          <div class="total">
+            <b id="selAmt">Belum dipilih</b>
+            <span id="selPrice">Pilih salah satu nominal di atas</span>
+          </div>
+          <button class="btn-order" id="orderBtn" disabled>Bayar dengan QRIS</button>
+        </div>
+      </div>
+
+      <!-- QR / STATUS -->
+      <div class="qr-panel" id="qrPanel">
+        <div class="qr-status" id="qrStatus"><span class="dot"></span><span id="qrStatusText">Menunggu pembayaran</span></div>
+        <img id="qrImage" src="" alt="Kode QRIS pembayaran">
+        <p style="font-weight:700;margin-bottom:4px;">Total: <span id="qrAmount"></span></p>
+        <p style="color:var(--muted);font-size:13px;margin-bottom:18px;">Scan pakai e-wallet atau m-banking apa saja. Halaman ini otomatis update begitu pembayaran terkonfirmasi.</p>
+        <a href="#" class="btn-ghost" id="qrReset">Pesan Baru</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cara">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Cara Pemesanan</h2>
+      <p>Empat langkah dari isi ID sampai diamond masuk ke akun.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><h3>Isi ID Akun</h3><p>Masukkan ID game (dan server jika diminta) di form.</p></div>
+      <div class="step"><div class="num">2</div><h3>Pilih Nominal</h3><p>Klik salah satu kartu nominal diamond yang diinginkan.</p></div>
+      <div class="step"><div class="num">3</div><h3>Scan & Bayar</h3><p>Kode QRIS otomatis muncul, scan pakai e-wallet/m-banking.</p></div>
+      <div class="step"><div class="num">4</div><h3>Diamond Masuk</h3><p>Setelah pembayaran terkonfirmasi, diamond masuk 1–5 menit.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="logo"><span class="dot"></span>GemStore</div>
+      <p class="note">Top up diamond & UC untuk berbagai game populer, diproses otomatis lewat sistem pembayaran QRIS.</p>
+    </div>
+    <a href="#" class="nav-cta" id="waSupport">Hubungi Admin</a>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="alert">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/></svg>
+  <span id="toastMsg">Isi ID akun dulu ya</span>
+</div>
+
+<a class="fab" href="#" id="fabWA" aria-label="Chat WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.3L2 22l4.9-1.4C8.4 21.5 10.1 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.6 0-3.1-.4-4.5-1.2l-.3-.2-3 .8.8-2.9-.2-.3C4 15 3.5 13.5 3.5 12 3.5 7.3 7.3 3.5 12 3.5S20.5 7.3 20.5 12 16.7 20 12 20z"/></svg>
+</a>
+
+<script>
+  // ====== GANTI SESUAI BACKEND KAMU ======
+  // Selama backend masih jalan di Codespace/lokal, biarkan begini.
+  // Begitu backend sudah di-deploy (Railway/Render/Vercel), ganti
+  // jadi URL publiknya, misal: "https://nama-project.up.railway.app"
+  const API_BASE_URL = "http://localhost:3000";
+  const WA_NUMBER = "6285852477080"; // nomor admin buat tombol "Hubungi Admin"
+
+  const nominalCards = document.querySelectorAll('.nominal-card');
+  const orderBtn = document.getElementById('orderBtn');
+  const selAmt = document.getElementById('selAmt');
+  const selPrice = document.getElementById('selPrice');
+  const useridInput = document.getElementById('userid');
+  const toast = document.getElementById('toast');
+  const toastMsg = document.getElementById('toastMsg');
+  const formArea = document.getElementById('formArea');
+  const qrPanel = document.getElementById('qrPanel');
+  const qrImage = document.getElementById('qrImage');
+  const qrAmount = document.getElementById('qrAmount');
+  const qrStatus = document.getElementById('qrStatus');
+  const qrStatusText = document.getElementById('qrStatusText');
+
+  let selected = null;
+  let toastTimer = null;
+  let pollTimer = null;
+
+  function showToast(msg) {
+    toastMsg.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
+  }
+
+  function isUseridFilled() {
+    return useridInput.value.trim().length > 0;
+  }
+
+  nominalCards.forEach(card => {
+    card.addEventListener('click', () => {
+      if (!isUseridFilled()) {
+        showToast('Isi ID akun dulu sebelum pilih nominal ya');
+        useridInput.classList.add('field-error');
+        useridInput.focus();
+        return;
+      }
+      useridInput.classList.remove('field-error');
+      nominalCards.forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      selected = { id: card.dataset.id, label: card.dataset.label, price: card.dataset.price };
+      selAmt.textContent = selected.label;
+      selPrice.textContent = selected.price;
+      orderBtn.disabled = false;
+    });
+  });
+
+  useridInput.addEventListener('input', () => {
+    if (isUseridFilled()) useridInput.classList.remove('field-error');
+  });
+
+  orderBtn.addEventListener('click', async () => {
+    if (!isUseridFilled()) {
+      showToast('Isi ID akun dulu ya');
+      useridInput.classList.add('field-error');
+      return;
+    }
+    if (!selected) {
+      showToast('Pilih nominal diamond dulu ya');
+      return;
+    }
+
+    orderBtn.disabled = true;
+    orderBtn.textContent = 'Membuat kode QRIS...';
+
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/order`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          product_id: selected.id,
+          customer_no: useridInput.value.trim(),
+        }),
+      });
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.error || 'Gagal membuat pesanan');
+      }
+
+      const data = await res.json();
+
+      // Tampilkan QR code lewat layanan generator QR gratis
+      const qrImgUrl = `https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(data.qr_string)}`;
+      qrImage.src = qrImgUrl;
+      qrAmount.textContent = selected.price;
+
+      formArea.style.display = 'none';
+      qrPanel.classList.add('show');
+
+      startPolling(data.ref_id);
+    } catch (err) {
+      showToast(err.message || 'Server belum bisa diakses, coba lagi nanti');
+      orderBtn.disabled = false;
+      orderBtn.textContent = 'Bayar dengan QRIS';
+    }
+  });
+
+  function startPolling(ref_id) {
+    clearInterval(pollTimer);
+    pollTimer = setInterval(async () => {
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/order/${ref_id}`);
+        if (!res.ok) return;
+        const order = await res.json();
+        updateStatusUI(order.status);
+        if (order.status === 'selesai' || order.status === 'gagal') {
+          clearInterval(pollTimer);
+        }
+      } catch (err) {
+        // biarkan, coba lagi di interval berikutnya
+      }
+    }, 4000);
+  }
+
+  function updateStatusUI(status) {
+    qrStatus.classList.remove('selesai', 'gagal');
+    if (status === 'menunggu_pembayaran') {
+      qrStatusText.textContent = 'Menunggu pembayaran';
+    } else if (status === 'sudah_dibayar' || status === 'diproses_digiflazz') {
+      qrStatusText.textContent = 'Pembayaran diterima, diamond sedang diproses...';
+    } else if (status === 'selesai') {
+      qrStatus.classList.add('selesai');
+      qrStatusText.textContent = 'Diamond berhasil masuk!';
+    } else if (status === 'gagal') {
+      qrStatus.classList.add('gagal');
+      qrStatusText.textContent = 'Transaksi gagal, hubungi admin';
+    }
+  }
+
+  document.getElementById('qrReset').addEventListener('click', (e) => {
+    e.preventDefault();
+    clearInterval(pollTimer);
+    qrPanel.classList.remove('show');
+    formArea.style.display = 'block';
+    nominalCards.forEach(c => c.classList.remove('selected'));
+    selected = null;
+    orderBtn.disabled = true;
+    orderBtn.textContent = 'Bayar dengan QRIS';
+    useridInput.value = '';
+  });
+
+  function waLink(text) {
+    return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
+  }
+  document.getElementById('fabWA').addEventListener('click', (e) => {
+    e.preventDefault();
+    window.open(waLink('Halo Admin GemStore, saya mau tanya soal top up diamond.'), '_blank');
+  });
+  document.getElementById('waSupport').addEventListener('click', (e) => {
+    e.preventDefault();
+    window.open(waLink('Halo Admin GemStore, saya butuh bantuan.'), '_blank');
+  });
+</script>
+
+</body>
+</html>
