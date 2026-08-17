@@ -141,6 +141,25 @@ app.get("/", (req, res) => {
   res.send("Backend top up game aktif.");
 });
 
+app.get("/api/jam", (req, res) => {
+  const sekarang = new Date().toLocaleString("id-ID",{ timeZone: "Asia/Jakarta" });
+  res.json({ jam_sekarang: sekarang });
+});
+
+app.get("/api/test-digiflazz", async (req, res) => {
+  try {
+    const { requestTopup } = await import("./digiflazz.js");
+    const result = await requestTopup({
+      buyer_sku_code: "xld10",
+      customer_no: "087800001230",
+      ref_id: "test1",
+    });
+    res.json(result);
+  } catch (err) {
+    res.status(500).json({ error: err.response?.data || err.message });
+  }
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server jalan di http://localhost:${PORT}`);
