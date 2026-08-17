@@ -1,11 +1,13 @@
 import "dotenv/config";
 import express from "express";
+import cors from "cors";
 import { nanoid } from "nanoid";
 import { createOrder, getOrder, updateOrder, listOrders } from "./db.js";
 import { requestTopup } from "./digiflazz.js";
 import { createQRIS } from "./xendit.js";
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 const PRODUCTS = {
@@ -161,6 +163,6 @@ app.get("/api/test-digiflazz", async (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server jalan di http://localhost:${PORT}`);
 });
