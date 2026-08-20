@@ -24,7 +24,7 @@ const PRODUCTS = {
   "ml-790": { label: "790 Diamond Mobile Legends", buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 205000 },
 
   // ===== FREE FIRE =====
-  "ff-25":   { label: "25 Diamond Free Fire",   buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 5000 },
+  "ff-25":   { label: "25 Diamond Free Fire",   buyer_sku_code: "test", price: 5000 },
   "ff-75":   { label: "75 Diamond Free Fire",   buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 10000 },
   "ff-150":  { label: "150 Diamond Free Fire",  buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 20000 },
   "ff-210":  { label: "210 Diamond Free Fire",  buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 30000 },
