@@ -13,8 +13,8 @@ app.use(express.json());
 // DAFTAR PRODUK — GANTI SESUAI PRICE LIST DIGIFLAZZ ASLI KAMU
 // ============================================================
 const PRODUCTS = {
-  "ml-86": { label: "86 Diamond Mobile Legends", buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 20000 },
-  "ml-172": { label: "172 Diamond Mobile Legends", buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 40000 },
+  "ml-86": { label: "86 Diamond Mobile Legends", buyer_sku_code: "tes", price: 20000 },
+  "ml-172": { label: "172 Diamond Mobile Legends", buyer_sku_code: "tes", price: 40000 },
 };
 
 // ------------------------------------------------------------
