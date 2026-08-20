@@ -13,9 +13,53 @@ app.use(express.json());
 // DAFTAR PRODUK — GANTI SESUAI PRICE LIST DIGIFLAZZ ASLI KAMU
 // ============================================================
 const PRODUCTS = {
-  "ml-86": { label: "86 Diamond Mobile Legends", buyer_sku_code: "tes", price: 20000 },
-  "ml-172": { label: "172 Diamond Mobile Legends", buyer_sku_code: "tes", price: 40000 },
+  // ===== MOBILE LEGENDS =====
+  "ml-406": { label: "406 Diamond Mobile Legends", buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 110000 },
+  "ml-429": { label: "429 Diamond Mobile Legends", buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 120000 },
+  "ml-500": { label: "500 Diamond Mobile Legends", buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 130000 },
+  "ml-530": { label: "530 Diamond Mobile Legends", buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 160000 },
+  "ml-600": { label: "600 Diamond Mobile Legends", buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 162000 },
+  "ml-642": { label: "642 Diamond Mobile Legends", buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 165000 },
+  "ml-720": { label: "720 Diamond Mobile Legends", buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 187000 },
+  "ml-790": { label: "790 Diamond Mobile Legends", buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 205000 },
+
+  // ===== FREE FIRE =====
+  "ff-25":   { label: "25 Diamond Free Fire",   buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 5000 },
+  "ff-75":   { label: "75 Diamond Free Fire",   buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 10000 },
+  "ff-150":  { label: "150 Diamond Free Fire",  buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 20000 },
+  "ff-210":  { label: "210 Diamond Free Fire",  buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 30000 },
+  "ff-300":  { label: "300 Diamond Free Fire",  buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 40000 },
+  "ff-375":  { label: "375 Diamond Free Fire",  buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 50000 },
+  "ff-770":  { label: "770 Diamond Free Fire",  buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 100000 },
+  "ff-1145": { label: "1145 Diamond Free Fire", buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 150000 },
+  "ff-1580": { label: "1580 Diamond Free Fire", buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 200000 },
+  "ff-2720": { label: "2720 Diamond Free Fire", buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 350000 },
+
+  // ===== PUBG MOBILE =====
+  "pubg-60":   { label: "60 UC PUBG Mobile",   buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 15000 },
+  "pubg-325":  { label: "325 UC PUBG Mobile",  buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 75000 },
+  "pubg-660":  { label: "660 UC PUBG Mobile",  buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 150000 },
+  "pubg-1800": { label: "1800 UC PUBG Mobile", buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 375000 },
+
+  // ===== GENSHIN IMPACT =====
+  "gi-60":   { label: "60 Crystal Genshin Impact",   buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 16000 },
+  "gi-300":  { label: "300 Crystal Genshin Impact",  buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 79000 },
+  "gi-980":  { label: "980 Crystal Genshin Impact",  buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 249000 },
+  "gi-1980": { label: "1980 Crystal Genshin Impact", buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 479000 },
+
+  // ===== CALL OF DUTY MOBILE =====
+  "codm-80":   { label: "80 CP Call of Duty Mobile",   buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 15000 },
+  "codm-420":  { label: "420 CP Call of Duty Mobile",  buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 75000 },
+  "codm-880":  { label: "880 CP Call of Duty Mobile",  buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 150000 },
+  "codm-2400": { label: "2400 CP Call of Duty Mobile", buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 375000 },
+
+  // ===== HONKAI: STAR RAIL =====
+  "hsr-60":   { label: "60 Oneiric Shard Honkai Star Rail",   buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 16000 },
+  "hsr-300":  { label: "300 Oneiric Shard Honkai Star Rail",  buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 79000 },
+  "hsr-980":  { label: "980 Oneiric Shard Honkai Star Rail",  buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 249000 },
+  "hsr-1980": { label: "1980 Oneiric Shard Honkai Star Rail", buyer_sku_code: "GANTI_DENGAN_SKU_ASLI", price: 479000 },
 };
+
 
 // ------------------------------------------------------------
 // 1) BUAT ORDER BARU (tanpa QRIS otomatis, cukup simpan data)
